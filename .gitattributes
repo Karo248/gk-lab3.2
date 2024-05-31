@@ -1,2 +1,33 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+import pygame
+import sys
+
+pygame.init()
+
+width, height = 600, 600
+window_size = (width, height)
+window = pygame.display.set_mode(window_size)
+background_color = (255, 255, 255)
+circle_color = (0, 0, 0)
+radius = 150
+square_color = (0, 0, 255)
+original_square_size = 200
+square_scale_factor = 0.75
+square_size = int(original_square_size * square_scale_factor)
+
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+
+    window.fill(background_color)
+    center_x = width // 2
+    center_y = height // 2
+
+    pygame.draw.circle(window, circle_color, (center_x, center_y), radius)
+
+    square_x = center_x - square_size // 2
+    square_y = center_y - square_size // 2
+    pygame.draw.rect(window, square_color, (square_x, square_y, square_size, square_size))
+
+    pygame.display.flip()
